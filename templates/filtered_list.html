@@ -1,0 +1,36 @@
+<!-- filtered_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Shibari Wiki - Here are the ties you can do</title>
+</head>
+<body>
+  <h1>Here are the ties you can do</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Technique Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td><a href="{{ url_for('display_technique', tie_name=item['tie_name']) }}">{{ item['tie_name'] }}</a></td>
+        </tr>
+      {% endfor %}
+      {% if not items %}
+        <tr>
+          <td colspan="1">No techniques found.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  <br>
+  <a href="{{ url_for('list_items') }}">Back to Technique List</a>
+</body>
+</html>

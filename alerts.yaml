@@ -1,0 +1,29 @@
+additionalPrometheusRulesMap:
+  rule-name:
+    groups:
+    - name: project
+      rules:
+      - alert: LowRunningPodsCount
+        expr: count(kube_pod_status_phase{namespace="dev", pod=~"my-application-myhelm.*", phase="Running"}) < 4
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Low number of running pods"
+          description: "The count of running pods matching 'my-application-myhelm*' in namespace 'dev' is below 3."
+      - alert: HighCpuUsage
+        expr: sum(rate(container_cpu_usage_seconds_total{namespace="dev", container!="", pod=~"my-application-myhelm.*"}[5m])) by (pod) / sum(kube_pod_container_resource_limits_cpu_cores{namespace="dev", container!="", pod=~"my-application-myhelm.*"}) by (pod) > 0.2
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage for one or more pods matching 'my-application-myhelm*' in namespace 'dev' is above 80% of its limit."
+      - alert: LowCpuUsage
+        expr: sum(rate(container_cpu_usage_seconds_total{namespace="dev", container!="", pod=~"my-application-myhelm.*"}[5m])) by (pod) / sum(kube_pod_container_resource_limits_cpu_cores{namespace="dev", container!="", pod=~"my-application-myhelm.*"}) by (pod) < 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low CPU usage detected"
+          description: "CPU usage for one or more pods matching 'my-application-myhelm*' in namespace 'dev' is below 10% of its limit."

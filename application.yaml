@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://gitlab.com/sela-tracks/1101/alex/alex_shibariwiki_proj.git  # Replace with your actual URL
+    targetRevision: HEAD 
+    path: ./myhelm # Only needed if not using Helm charts
+    helm:
+      parameters:
+        - name: image.repository
+          value: thebluedrara/wikiapp
+        - name: image.tag
+          value: latest
+        - name: image.pullPolicy
+          value: Always
+
+  destination:
+    server: https://kubernetes.default.svc  # Replace with your actual URL https://127.0.0.1:60616
+    namespace: dev
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

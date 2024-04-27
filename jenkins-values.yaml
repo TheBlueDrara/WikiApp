@@ -1,0 +1,77 @@
+controller:
+  # Number of Jenkins master replicas
+  replicas: 1
+
+  # Jenkins master resource requests and limits
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "256Mi"
+    limits:
+      cpu: "2000m"
+      memory: "2048Mi"
+
+  # Define the Jenkins URL
+  serviceType: LoadBalancer
+  baseUrl: "http://example.com/jenkins"
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: /
+    hosts:
+      - jenkins.example.com
+
+  # Define the Jenkins admin user and password
+  admin:
+    username: alex
+    password: alex
+
+
+  # Jenkins Plugins
+  installPlugins:
+    - kubernetes:1.29.2
+    - workflow-aggregator:2.6
+    - blueocean:1.24.5
+    # Add more plugins as needed
+
+  # Configure Jenkins JVM options
+  jenkinsOpts: "-Xmx512m -Djava.awt.headless=true"
+
+  # Jenkins Configuration as Code (JCasC)
+  jenkinsCasC:
+    enabled: true
+    configScripts:
+      - id: "global-configuration"
+        description: "Global Configuration"
+        script: |
+          jenkins:
+            systemMessage: "Managed by Jenkins Configuration as Code"
+            agentProtocols:
+              - "JNLP4-connect"
+              - "JNLP-connect"
+            scmCheckoutRetryCount: 2
+            numExecutors: 2
+            disableRememberMe: false
+            # Add more global configurations as needed
+
+  # Other configurations
+  rbac:
+    install: true
+
+  # Persistence
+  persistence:
+    enabled: true
+    size: 8Gi
+
+# Configure Jenkins agent
+agent:
+  enabled: true
+  image:
+    repository: "jenkins/inbound-agent"
+    tag: "4.10-4"
+
+
+# Configure RBAC
+rbac:
+  create: true

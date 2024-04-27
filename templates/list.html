@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test2</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <h1>test</h1>
+
+  <form action="{{ url_for('filter_techniques') }}" method="GET">
+    <label for="available_rope">How much rope do you have?</label>
+    <input type="number" placeholder="Enter amount of rope" id="available_rope" name="available_rope" min="0">
+    <br><br>
+
+    <label for="rope_length">What is the length of the rope you have?</label>
+    <input type="number" step="0.1" placeholder="Enter rope length" name="rope_length" id="rope_length">
+    <br><br>
+
+    <label for="filter_rope_type">Select Rope Type:</label>
+    <select id="filter_rope_type" name="filter_rope_type">
+      <option value="">All Types</option>
+      <option value="yuta">Yuta</option>
+      <option value="chain">Chain</option>
+      <option value="cloth">Cloth</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Filter</button>
+  </form>
+  {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  
+  <a href="{{ url_for('add_item') }}">Add a new technique</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Technique Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td><a href="{{ url_for('display_technique', tie_name=item['tie_name']) }}">{{ item['tie_name'] }}</a></td>
+          <td>
+            <form action="{{ url_for('delete_item', tie_name=item['tie_name']) }}" method="POST">
+              <button type="submit" title="Delete this technique" onclick="return confirm('Are you sure you want to delete this technique?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      {% if not items %}
+        <tr>
+          <td colspan="2">No techniques found.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</body>
+</html>
