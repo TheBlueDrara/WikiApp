@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ item.tie_name }} - Shibari Wiki</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>{{ item.tie_name }}</h1>
+  <p><strong>Description:</strong> {{ item.description }}</p>
+  <p><strong>Length of Rope Needed:</strong> {{ item.length_of_rope }}</p>
+  <p><strong>Rope Type:</strong> {{ item.rope_type }}</p>
+  <p><strong>Amount of Ropes Needed:</strong> {{ item.amount_of_ropes_needed }}</p>
+
+  <!-- Add any additional details as needed -->
+
+  <br>
+  <a href="{{ url_for('list_items') }}">Back to Technique List</a>
+</body>
+</html>

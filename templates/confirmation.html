@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmation</title>
+</head>
+<body>
+  <h1>Technique Added Successfully!</h1>
+  <p>You can now view the list of techniques or add another one.</p>
+  <a href="{{ url_for('list_items') }}">View Techniques</a>
+  <a href="{{ url_for('add_item') }}">Add another Technique</a>
+</body>
+</html>

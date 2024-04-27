@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Shibari Wiki - Add Technique</title>
+
+  <!-- Add JavaScript for input validation -->
+  <script>
+    function validateInput() {
+      var amountOfRopes = document.getElementById("amount_of_ropes_needed").value;
+      var lengthOfRope = document.getElementById("length_of_rope").value;
+
+      // Validate amountOfRopes as a non-negative integer
+      if (!(/^\d+$/.test(amountOfRopes)) || amountOfRopes < 0) {
+        alert("Please enter a valid, non-negative integer for the amount of ropes needed.");
+        return false;
+      }
+
+      // Validate lengthOfRope as a non-negative integer or decimal
+      if (!(/^\d+(\.\d+)?$/.test(lengthOfRope)) || lengthOfRope < 0) {
+        alert("Please enter a valid, non-negative number for the length of rope needed.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h1>Add a New Technique</h1>
+  <form method="POST" onsubmit="return validateInput()">
+    <label for="tie_name">Technique Name:</label>
+    <input type="text" id="tie_name" name="tie_name" required>
+    <br><br>
+
+    <label for="description">Description (up to 200 characters):</label>
+    <textarea id="description" name="description" rows="10" maxlength="200" required></textarea>
+    <br><br>
+
+    <label for="length_of_rope">Length of Rope Needed:</label>
+    <input type="text" id="length_of_rope" name="length_of_rope" required>
+    <br><br>
+
+    <label for="rope_type">Rope Type:</label>
+    <select id="rope_type" name="rope_type" required>
+      <option value="yuta">Yuta</option>
+      <option value="chain">Chain</option>
+      <option value="cloth">Cloth</option>
+    </select>
+    <br><br>
+
+    <label for="amount_of_ropes_needed">Amount of Ropes Needed:</label>
+    <input type="number" id="amount_of_ropes_needed" name="amount_of_ropes_needed" required>
+    <br><br>
+
+    <button type="submit">Add Technique</button>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</body>
+</html>
