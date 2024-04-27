@@ -1,6 +1,6 @@
-WikiApp
-
 Welcome to my CI/CD project.
+
+About:
 
 In this project, I've created a small web wiki app that is connected to a stateful database using MongoDB and the Flask library.
 Everything runs on a local Kubernetes cluster I've created using Kind and Docker Desktop.
@@ -16,10 +16,13 @@ Then ArgoCD pulls the new artifact from Docker Hub and deploys it using my confi
 By using Prometheus, I've created some alerts to see that all the replicas are running smoothly and not overloaded. If they are overloaded, then an alert will be shown.
 Everything is monitored using Grafana.
 
-How to run the app?
+
+
+
+How to run the app:
 
 To run the app locally, make sure you have MongoDB, ShibariWiki, test_app Python files, and the Docker Compose YAML file in the same directory.
-And make sure you have kubectl installed on your machine.
+And make sure you have Docker Desktop installed on your machine if youre using Windows.
 
 Run the next command to build the environment:
 
@@ -39,12 +42,11 @@ If everything is correct, you should be able to go to your webpage and access th
 
 ![image](https://github.com/TheBlueDrara/WikiApp/assets/143508761/907a84ec-b703-41cd-b048-1fe073afcfd0)
 
-About the App
+About the App:
 
 You can add new items to the database.
-
+You can see info about every technique.
 You can use the filter option by entering the amount of resources you have to search for available techniques you can use.
-
 Alternatively, you can delete items from the list.
 
 Enjoy!
