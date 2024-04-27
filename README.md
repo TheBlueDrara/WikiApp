@@ -25,10 +25,26 @@ Run the next command to build the environment:
 
 ** docker-compose up --build -d **
 
+![image](https://github.com/TheBlueDrara/WikiApp/assets/143508761/76ca4ad0-8d75-48eb-99f9-50d263676425)
+
+
 If you want to see if the tests passed or failed, use this command to read the test container's log:
 
 ** docker-compose logs test **
 
+![image](https://github.com/TheBlueDrara/WikiApp/assets/143508761/d3338e3e-2f8d-4ba5-9c0a-4aebe11c4a0b)
+
+
 If everything is correct, you should be able to go to your webpage and access the wiki by typing localhost:5000 in the web search bar.
 
 ![image](https://github.com/TheBlueDrara/WikiApp/assets/143508761/907a84ec-b703-41cd-b048-1fe073afcfd0)
+
+About the App
+
+You can add new items to the database.
+
+You can use the filter option by entering the amount of resources you have to search for available techniques you can use.
+
+Alternatively, you can delete items from the list.
+
+Enjoy!
