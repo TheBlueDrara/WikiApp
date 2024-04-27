@@ -30,3 +30,5 @@ If you want to see if the tests passed or failed, use this command to read the t
 ** docker-compose logs test **
 
 If everything is correct, you should be able to go to your webpage and access the wiki by typing localhost:5000 in the web search bar.
+
+![image](https://github.com/TheBlueDrara/WikiApp/assets/143508761/907a84ec-b703-41cd-b048-1fe073afcfd0)
