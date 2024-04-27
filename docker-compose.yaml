@@ -31,6 +31,7 @@ services:
       - MONGODB_URI=mongodb://mongo:27017/MyDataBase
     depends_on:
       - mongo
+      
 volumes:
   mongo_data:
 

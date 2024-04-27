@@ -1,16 +1,22 @@
-# FROM python:3.11-slim
-# WORKDIR /app
-# COPY . /app
-# RUN pip install --no-cache-dir -r requirements.txt
-# EXPOSE 5000
-# CMD ["python", "ShibariWiki.py"]
-
-
 FROM python:3.11-slim
+
 WORKDIR /app
-COPY . /app
-COPY start.sh /app/start.sh
+
+# Copying requirements first for caching
+COPY requirements.txt .
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire project
+COPY . .
+
+# Copy start.sh and make it executable
+COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
+
+# Expose port if needed
 EXPOSE 5000
-CMD ["/app/start.sh"]
+
+# Run the start.sh script
+CMD ["/bin/bash", "/app/start.sh"]
