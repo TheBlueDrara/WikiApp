@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project
-COPY . .
+COPY . /app
 
 # Copy start.sh and make it executable
 COPY start.sh /app/start.sh
