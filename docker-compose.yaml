@@ -1,3 +1,9 @@
+# This Docker Compose has 3 services.
+# The app is built using the Dockerfile that builds the app itself and the data that is inserted.
+# MongoDB image for the database.
+# The Tests that are built from Dockerfile.testing and always use the new pushed code for the testing.
+# The only thing that is manual is the tests, which need to be updated for the new features that are added to the code.
+
 version: '3.8'
 
 services:
@@ -27,3 +33,7 @@ services:
       - mongo
 volumes:
   mongo_data:
+
+
+
+
