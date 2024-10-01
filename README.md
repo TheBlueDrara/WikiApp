@@ -2,9 +2,9 @@ Welcome to my CI/CD project.
 
 About:
 
-In this project, I've created a small web wiki app that is connected to a stateful database using MongoDB and the Flask library.
+In this project, I've created a small web application connected to a stateful database using MongoDB and the Flask library.
 Everything runs on a local Kubernetes cluster I've created using Kind and Docker Desktop.
-Using Helm tools and charts, I've deployed tools and services for the process, such as Jenkins, ArgoCD, and monitoring tools like Grafana and Prometheus.
+Using Helm Charts, I've deployed tools and services for the process, such as Jenkins, ArgoCD, and monitoring tools like Grafana and Prometheus.
 
 As part of the CI process, I've coded some testing code that tests the pushed code before it sends a merge request.
 
