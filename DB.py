@@ -1,12 +1,16 @@
+# Run this file to create a MongoDB Local DataBase / Connect to the DB
+
 import pymongo
 import os
 
-mongodb_uri = os.getenv("MONGODB_URI", "mongodb://localhost:27017/MyDataBase")
-database_name = "MyDataBase"
-collection_name = "MyCollection"
+# The environment variables
+mongodb_uri = "mongodb://localhost:27017/DataBase"
+database_name = "DataBase"
+collection_name = "Collection"
 
+# Block of code to handle errors
 try:
-    # Create a MongoClient
+    # Create or connect to a MongoClient/Server
     client = pymongo.MongoClient(mongodb_uri)
 
     # Access or create the database
@@ -16,7 +20,7 @@ try:
     collection = db[collection_name]
 
 
-    # Insert six sample documents into the collection (values)
+    # Insert sample documents into the collection if it is empty so there wont be duplication
     if collection.count_documents({}) == 0:
 
         sample_data = [
@@ -95,15 +99,12 @@ try:
     # Insert the sample data into the collection
     result = collection.insert_many(sample_data)
 
-    # Output the inserted document IDs (optional)
+    # Output the inserted document IDs so we can see what was added
     print("Inserted document IDs:", result.inserted_ids)
-
     print("Database, collection, and documents creation completed successfully.")
-
+    
+# Error output so we can handle errors
 except pymongo.errors.ConnectionFailure as e:
     print(f"Failed to connect to MongoDB: {e}")
 
-finally:
-    # Close the MongoDB connection (if opened)
-    if 'client' in locals():
-        client.close()
+

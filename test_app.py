@@ -1,22 +1,22 @@
 import pytest
-from ShibariWiki import app, collection
+from App import app, collection
 
 
-# Test if the home page returns a 200 status code
+# Test if the home page
 def test_home_page():
     client = app.test_client()
     response = client.get('/')
     assert response.status_code == 200
 
 
-# Test if the add item page returns a 200 status code
+# Test Add Page function
 def test_add_item_page():
     client = app.test_client()
     response = client.get('/add')
     assert response.status_code == 200
 
 
-# Test if the filter page returns a 200 status code
+# Test the filter page
 def test_filter_page():
     client = app.test_client()
     response = client.get('/filter')
@@ -27,7 +27,7 @@ def test_filter_page():
 def test_add_item():
     client = app.test_client()
 
-    # Valid data
+    # Validate data
     response = client.post('/add', data=dict(
         tie_name='Test Tie',
         description='Test Description',
