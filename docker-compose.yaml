@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: Dockerfile.testing
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/MyDataBase
+      - MONGODB_URI=mongodb://mongo:27017/DataBase
     depends_on:
       - mongo
       - app
